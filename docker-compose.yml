@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  vending:
+    container_name: vending
+    build:
+      context: .
+    ports:
+      - "8000:8000"
