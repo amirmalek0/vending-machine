@@ -1,0 +1,42 @@
+[
+    {
+        "Name": "machine_1",
+        "Products": [
+            {
+                "Name": "coffee",
+                "Count": 1000,
+                "Price": 20
+            },
+            {
+                "Name": "coca",
+                "Count": 1000,
+                "Price": 10
+            },
+            {
+                "Name": "cake",
+                "Count": 984,
+                "Price": 30
+            }
+        ]
+    },
+    {
+        "Name": "machine_2",
+        "Products": [
+            {
+                "Name": "coffee",
+                "Count": 1000,
+                "Price": 20
+            },
+            {
+                "Name": "coca",
+                "Count": 1000,
+                "Price": 10
+            },
+            {
+                "Name": "cake",
+                "Count": 1000,
+                "Price": 30
+            }
+        ]
+    }
+]

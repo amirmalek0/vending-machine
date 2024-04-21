@@ -1,55 +1,45 @@
 package data
 
-import "vending-mechine/pkg"
+import (
+	"encoding/json"
+	"io/ioutil"
+	"log"
+	"os"
+	"path/filepath"
+	"vending-mechine/pkg"
+)
 
 const (
 	CocaName   = "coca"
 	CoffeeName = "coffee"
 	CakeName   = "cake"
 
-	MachineName1 = "machine_1"
-	MachineName2 = "machine_2"
+	//MachineName1 = "machine_1"
+	//MachineName2 = "machine_2"
 )
 
-var Mechins = []*pkg.Machine{
-	{
-		Name: MachineName1,
-		Products: []*pkg.Product{
-			{
-				Name:  CoffeeName,
-				Price: 20,
-				Count: 1000,
-			},
-			{
-				Name:  CocaName,
-				Price: 10,
-				Count: 1000,
-			},
-			{
-				Name:  CakeName,
-				Price: 30,
-				Count: 1000,
-			},
-		},
-	},
-	{
-		Name: MachineName2,
-		Products: []*pkg.Product{
-			{
-				Name:  CoffeeName,
-				Price: 20,
-				Count: 1000,
-			},
-			{
-				Name:  CocaName,
-				Price: 10,
-				Count: 1000,
-			},
-			{
-				Name:  CakeName,
-				Price: 30,
-				Count: 1000,
-			},
-		},
-	},
+var Mechins []*pkg.Machine
+
+func LoadDataFromJSONFile(filePath string) error {
+	data, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal(data, &Mechins)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func init() {
+	dir, err := os.Getwd()
+	filePath := filepath.Join(dir, "/data/machines.json")
+
+	err = LoadDataFromJSONFile(filePath)
+	if err != nil {
+		log.Fatalf("Error loading data from JSON file: %v", err)
+	}
 }

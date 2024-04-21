@@ -53,12 +53,11 @@ func buyCoca() *cobra.Command {
 			machine := args[0]
 			coin, err := strconv.ParseInt(args[1], 10, 32)
 			if err != nil {
-
 				fmt.Println("coin should be number")
 				cmd.Help()
 				return
 			}
-			message, err := handler.domain.BuyCoffee(machine, int32(coin))
+			message, err := handler.domain.BuyCoca(machine, int32(coin))
 			if err != nil {
 				fmt.Println(err.Error())
 				cmd.Help()
