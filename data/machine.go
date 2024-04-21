@@ -5,6 +5,7 @@ import "vending-mechine/pkg"
 const (
 	CocaName   = "coca"
 	CoffeeName = "coffee"
+	CakeName   = "cake"
 
 	MachineName1 = "machine_1"
 	MachineName2 = "machine_2"
@@ -24,6 +25,11 @@ var Mechins = []*pkg.Machine{
 				Price: 10,
 				Count: 1000,
 			},
+			{
+				Name:  CakeName,
+				Price: 30,
+				Count: 1000,
+			},
 		},
 	},
 	{
@@ -37,6 +43,11 @@ var Mechins = []*pkg.Machine{
 			{
 				Name:  CocaName,
 				Price: 10,
+				Count: 1000,
+			},
+			{
+				Name:  CakeName,
+				Price: 30,
 				Count: 1000,
 			},
 		},

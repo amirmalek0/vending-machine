@@ -2,6 +2,7 @@ package domain
 
 import (
 	"errors"
+	"fmt"
 	"vending-mechine/data"
 	"vending-mechine/pkg"
 )
@@ -33,12 +34,10 @@ func (v *VendingMachineDomain) GetMachineByName(name string) (*pkg.Machine, erro
 }
 
 func (v *VendingMachineDomain) BuyCoffee(machine string, coin int32) (string, error) {
-
 	mch, err := v.GetMachineByName(machine)
 	if err != nil {
 		return "", errors.New("invalid machine name")
 	}
-
 	message, err := v.BuyOperation(mch, coin, data.CoffeeName)
 	if err != nil {
 		return "", err
@@ -47,12 +46,22 @@ func (v *VendingMachineDomain) BuyCoffee(machine string, coin int32) (string, er
 }
 
 func (v *VendingMachineDomain) BuyCoca(machine string, coin int32) (string, error) {
-
 	mch, err := v.GetMachineByName(machine)
 	if err != nil {
 		return "", errors.New("invalid machine name")
 	}
 	message, err := v.BuyOperation(mch, coin, data.CocaName)
+	if err != nil {
+		return "", err
+	}
+	return message, nil
+}
+func (v *VendingMachineDomain) BuyCake(machine string, coin int32) (string, error) {
+	mch, err := v.GetMachineByName(machine)
+	if err != nil {
+		return "", errors.New("invalid machine name")
+	}
+	message, err := v.BuyOperation(mch, coin, data.CakeName)
 	if err != nil {
 		return "", err
 	}
@@ -68,7 +77,9 @@ func (v *VendingMachineDomain) BuyOperation(mch *pkg.Machine, coin int32, produc
 				return "", errors.New("coin amount is not enough")
 			}
 			product.Count--
-			return "operation done", nil
+			leftCount := product.Count
+			message := fmt.Sprintf("Operation done - Left count: %d", leftCount)
+			return message, nil
 		}
 	}
 	return "", errors.New("invalid product name")

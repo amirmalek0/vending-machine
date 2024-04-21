@@ -35,4 +35,6 @@ func (h *HttpServer) registerRoutes() {
 	h.server.GET("/", h.handlers.machineList)
 	h.server.GET("/coffee", h.handlers.buyCaffe)
 	h.server.GET("/coca", h.handlers.buyCoca)
+	h.server.GET("/cake", h.handlers.buyCake)
+
 }

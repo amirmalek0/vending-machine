@@ -57,3 +57,20 @@ func (h *HttpHandlers) buyCoca(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, HttpResponse{Data: message})
 }
+
+func (h *HttpHandlers) buyCake(c echo.Context) error {
+	type Request struct {
+		MachineName string `json:"machine_name"`
+		Coin        int32  `json:"coin"`
+	}
+	req := &Request{}
+	err := c.Bind(req)
+	if err != nil {
+		return c.JSON(http.StatusUnprocessableEntity, HttpResponse{Error: "invalid input"})
+	}
+	message, err := h.domain.BuyCake(req.MachineName, req.Coin)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, HttpResponse{Error: err.Error()})
+	}
+	return c.JSON(http.StatusOK, HttpResponse{Data: message})
+}

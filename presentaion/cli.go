@@ -20,14 +20,15 @@ func NewCliHandler(domain *domain.VendingMachineDomain) *CliHandler {
 	rootCmd.AddCommand(machineList())
 	rootCmd.AddCommand(buyCoffee())
 	rootCmd.AddCommand(buyCoca())
+	rootCmd.AddCommand(buyCake())
 
 	return handler
 }
 
 var rootCmd = &cobra.Command{
 	Use:   "vending",
-	Short: "vending is a trusted machine for coffee and coca",
-	Long:  "vending is a trusted machine for coffee and coca",
+	Short: "vending is a trusted machine for coffee,coca and cake",
+	Long:  "vending is a trusted machine for coffee,coca and cake",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
